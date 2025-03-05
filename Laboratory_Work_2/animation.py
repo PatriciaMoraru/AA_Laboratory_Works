@@ -75,10 +75,18 @@ def generate_array():
 
 # Draw bars with numbers and spacing
 def draw_array(array, highlight1=None, highlight2=None):
+    global last_highlight1, last_highlight2
+
+    if paused:
+        highlight1, highlight2 = last_highlight1, last_highlight2  # Keep last highlights when paused
+    else:
+        last_highlight1, last_highlight2 = highlight1, highlight2  # Update highlights normally
+
     screen.fill(BACKGROUND_COLOR)
 
     # Draw reference horizontal line
-    pygame.draw.line(screen, LINE_COLOR, (LEFT_MARGIN, HEIGHT - BOTTOM_MARGIN), (WIDTH - RIGHT_MARGIN, HEIGHT - BOTTOM_MARGIN), 2)
+    pygame.draw.line(screen, LINE_COLOR, (LEFT_MARGIN, HEIGHT - BOTTOM_MARGIN),
+                     (WIDTH - RIGHT_MARGIN, HEIGHT - BOTTOM_MARGIN), 2)
 
     # Draw bars
     for index, value in enumerate(array):
@@ -86,9 +94,9 @@ def draw_array(array, highlight1=None, highlight2=None):
         color = BAR_COLOR
 
         if index == highlight1:
-            color = COMPARE_COLOR
+            color = COMPARE_COLOR  # Highlight bars being compared
         elif index == highlight2:
-            color = SWAP_COLOR
+            color = SWAP_COLOR  # Highlight swapped bars
 
         pygame.draw.rect(screen, color, (x_position, HEIGHT - value - BOTTOM_MARGIN, BAR_WIDTH, value))
         draw_text(str(value), (x_position + 5, HEIGHT - 30), TEXT_COLOR, 14)
@@ -96,6 +104,7 @@ def draw_array(array, highlight1=None, highlight2=None):
     # Draw buttons
     draw_buttons()
     pygame.display.update()
+
 
 
 # Draw text on screen
@@ -136,6 +145,7 @@ def check_events():
 # Handle button clicks
 def check_button_click(pos):
     global sorting, sort_generator, array, paused, sorting_done, last_highlight1, last_highlight2, selected_algorithm, dropdown_open
+    global selected_algorithm, dropdown_open
 
     x, y = pos
     dropdown_x, dropdown_y, dropdown_w, dropdown_h = 650, 10, 200, 30
@@ -188,10 +198,9 @@ def check_button_click(pos):
         pygame.quit()
         exit()
 
-
-
 # Draw buttons with dynamic pastel colors
 def draw_buttons():
+    global sorting_done, selected_algorithm, dropdown_open
     font = pygame.font.Font(None, 30)
 
     for text, x, y, w, h in BUTTONS:
@@ -209,9 +218,9 @@ def draw_buttons():
 
         screen.blit(text_surface, (x + 10, y + 5))
 
-    # Draw dropdown menu
+    # Draw dropdown menu (button)
     dropdown_x, dropdown_y, dropdown_w, dropdown_h = 650, 10, 200, 30
-    pygame.draw.rect(screen, (230, 230, 230), (dropdown_x, dropdown_y, dropdown_w, dropdown_h), border_radius=10)
+    pygame.draw.rect(screen, (200, 200, 200), (dropdown_x, dropdown_y, dropdown_w, dropdown_h), border_radius=10)
     dropdown_text = font.render(selected_algorithm, True, (0, 0, 0))
     screen.blit(dropdown_text, (dropdown_x + 10, dropdown_y + 5))
 

@@ -20,24 +20,24 @@ def merge_sort(arr, draw_array, delay):
                 j += 1
             k += 1
             draw_array(arr)
-            pygame.time.delay(delay)
             yield
+            pygame.time.delay(delay)
 
         while i < len(left_arr):
             arr[k] = left_arr[i]
             i += 1
             k += 1
             draw_array(arr)
-            pygame.time.delay(delay)
             yield
+            pygame.time.delay(delay)
 
         while j < len(right_arr):
             arr[k] = right_arr[j]
             j += 1
             k += 1
             draw_array(arr)
-            pygame.time.delay(delay)
             yield
+            pygame.time.delay(delay)
 
 
 def merge_bu(arr, left, mid, right, draw_array, delay):
@@ -56,24 +56,25 @@ def merge_bu(arr, left, mid, right, draw_array, delay):
             j += 1
         k += 1
         draw_array(arr)
-        pygame.time.delay(delay)
         yield
+        pygame.time.delay(delay)
+
 
     while i < len(left_part):
         arr[k] = left_part[i]
         i += 1
         k += 1
         draw_array(arr)
-        pygame.time.delay(delay)
         yield
+        pygame.time.delay(delay)
 
     while j < len(right_part):
         arr[k] = right_part[j]
         j += 1
         k += 1
         draw_array(arr)
-        pygame.time.delay(delay)
         yield
+        pygame.time.delay(delay)
 
 
 def bottom_up_merge_sort(arr, draw_array, delay):

@@ -21,8 +21,9 @@ def counting_sort(arr, exp, draw_array, delay):
     for i in range(n):
         arr[i] = output[i]
         draw_array(arr, highlight1=i)  # Highlight moving elements
-        pygame.time.delay(delay)
         yield  # Yield to allow animation
+        pygame.time.delay(delay)
+
 
 def radix_sort(arr, draw_array, delay):
     if not arr:
@@ -52,8 +53,8 @@ def iterative_msd_radix_sort(arr, draw_array, delay):
         if len(current_arr) <= 1 or digit < 0:
             sorted_list.extend(current_arr)
             draw_array(sorted_list)  # Update visualization
-            pygame.time.delay(delay)
             yield
+            pygame.time.delay(delay)
             continue
 
         buckets = [[] for _ in range(10)]
@@ -70,8 +71,8 @@ def iterative_msd_radix_sort(arr, draw_array, delay):
         for bucket in buckets:
             sorted_list.extend(bucket)
             draw_array(sorted_list)  # Update visualization
-            pygame.time.delay(delay)
             yield
+            pygame.time.delay(delay)
 
     arr[:] = sorted_list  # Update original array
 

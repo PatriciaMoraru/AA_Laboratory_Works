@@ -24,8 +24,8 @@ def partition(arr, low, high, draw_array, delay):
 
     arr[i], arr[high] = arr[high], arr[i]
     draw_array(arr, i, high)
-    pygame.time.delay(delay)
     yield
+    pygame.time.delay(delay)
 
     return i
 
@@ -51,8 +51,8 @@ def optimized_quick_sort(arr, draw_array, delay):
             right.append(num)
 
         draw_array(left + middle_section + right)
-        pygame.time.delay(delay)
         yield
+        pygame.time.delay(delay)
 
     sorted_left = yield from optimized_quick_sort(left, draw_array, delay)
     sorted_right = yield from optimized_quick_sort(right, draw_array, delay)

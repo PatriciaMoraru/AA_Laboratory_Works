@@ -12,20 +12,34 @@ def quick_sort(arr, draw_array, delay, low=0, high=None):
 
 def partition(arr, low, high, draw_array, delay):
     pivot = arr[high]
-    i = low
+    draw_array(arr, highlight1=high)
+    yield
+    pygame.time.delay(delay)
 
+    print(f"Pivot selected: {pivot} at index {high}")
+
+    i = low
     for j in range(low, high):
+        print(f"Comparing {arr[j]} (index {j}) with pivot {pivot}")
         if arr[j] < pivot:
+            print(f"Swapping {arr[i]} (index {i}) with {arr[j]} (index {j})")
             arr[i], arr[j] = arr[j], arr[i]
             i += 1
         draw_array(arr, i, j)
         pygame.time.delay(delay)
         yield
 
+    print(f"Swapping pivot {arr[high]} (index {high}) with {arr[i]} (index {i})")
+    draw_array(arr, i, high)
+    yield
+    pygame.time.delay(delay)
+
     arr[i], arr[high] = arr[high], arr[i]
     draw_array(arr, i, high)
     yield
     pygame.time.delay(delay)
+
+    print(f"Partition complete. Pivot {arr[i]} placed at index {i}")
 
     return i
 
@@ -58,4 +72,3 @@ def optimized_quick_sort(arr, draw_array, delay):
     sorted_right = yield from optimized_quick_sort(right, draw_array, delay)
 
     return sorted_left + middle_section + sorted_right
-

@@ -1,0 +1,26 @@
+strict graph {
+0;
+7;
+8;
+1;
+9;
+2;
+3;
+4;
+5;
+6;
+0 -- 7 [weight=10];
+0 -- 8 [weight=4];
+0 -- 1 [weight=8];
+7 -- 5 [weight=10];
+7 -- 3 [weight=1];
+8 -- 3 [weight=8];
+8 -- 4 [weight=9];
+8 -- 5 [weight=4];
+1 -- 9 [weight=9];
+1 -- 4 [weight=9];
+9 -- 3 [weight=1];
+2 -- 3 [weight=6];
+4 -- 6 [weight=7];
+5 -- 6 [weight=4];
+}

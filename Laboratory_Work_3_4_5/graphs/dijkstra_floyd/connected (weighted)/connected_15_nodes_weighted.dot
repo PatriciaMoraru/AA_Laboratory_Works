@@ -1,0 +1,35 @@
+strict graph {
+A;
+B;
+C;
+D;
+F;
+G;
+H;
+I;
+J;
+K;
+L;
+M;
+N;
+O;
+A -- J [weight=7];
+B -- F [weight=8];
+B -- J [weight=7];
+C -- D [weight=4];
+C -- H [weight=4];
+C -- L [weight=7];
+C -- M [weight=1];
+D -- O [weight=7];
+F -- H [weight=8];
+F -- M [weight=8];
+G -- N [weight=1];
+H -- K [weight=9];
+H -- L [weight=6];
+I -- K [weight=4];
+I -- L [weight=4];
+I -- O [weight=8];
+J -- K [weight=10];
+J -- O [weight=9];
+L -- N [weight=4];
+}

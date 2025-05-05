@@ -1,0 +1,20 @@
+strict graph {
+B;
+D;
+E;
+F;
+G;
+H;
+I;
+J;
+B -- F [weight=1];
+B -- G [weight=1];
+B -- H [weight=1];
+D -- E [weight=1];
+E -- J [weight=1];
+F -- J [weight=1];
+G -- I [weight=1];
+H -- I [weight=1];
+H -- J [weight=1];
+I -- J [weight=1];
+}
